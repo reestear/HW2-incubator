@@ -38,33 +38,5 @@ class CommentRepository:
             "comments"
         ]
 
-    # def get_shanyrak_by_id(self, shanyrak_id: str) -> Optional[dict]:
-    #     shanyrak = self.database["shanyraks"].find_one({"_id": ObjectId(shanyrak_id)})
-    #     return shanyrak
-
-    # def update_shanyrak_by_id(self, shanyrak_id: str, data: dict[str, Any]):
-    #     self.database["shanyraks"].update_one(
-    #         filter={"_id": ObjectId(shanyrak_id)},
-    #         update={"$set": data},
-    #     )
-
-    # def delete_shanyrak_by_id(self, shanyrak_id: str):
-    #     self.database["shanyraks"].delete_one({"_id": ObjectId(shanyrak_id)})
-
-    # def put_shanyrak_media_by_id(self, shanyrak_id: str, file_url: str):
-    #     shanyrak = self.database["shanyraks"].find_one({"_id": ObjectId(shanyrak_id)})
-    #     shanyrak["media"].append(file_url)
-
-    #     self.database["shanyraks"].update_one(
-    #         filter={"_id": ObjectId(shanyrak_id)},
-    #         update={"$set": shanyrak},
-    #     )
-
-    # def delete_shanyrak_media_by_id(self, shanyrak_id: str):
-    #     shanyrak = self.database["shanyraks"].find_one({"_id": ObjectId(shanyrak_id)})
-    #     shanyrak["media"] = []
-
-    #     self.database["shanyraks"].update_one(
-    #         filter={"_id": ObjectId(shanyrak_id)},
-    #         update={"$set": shanyrak},
-    #     )
+    def delete_comment(self, comment_id: str):
+        self.database["comments"].delete_one({"_id": ObjectId(comment_id)})
