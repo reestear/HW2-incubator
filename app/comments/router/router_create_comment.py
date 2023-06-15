@@ -8,21 +8,16 @@ from ..service import Service, get_service
 from . import router
 
 
-class UpdateShanyrakRequest(AppModel):
-    type: str
-    price: int
-    address: str
-    area: float
-    room_count: int
-    description: str
+class CreateCommentRequest(AppModel):
+    content: str
 
 
-@router.patch("/{shanyrak_id:str}")
-def update_shanyrak(
+@router.post("/{shanyrak_id:str}/comments")
+def create_comment(
     shanyrak_id: str,
-    input: UpdateShanyrakRequest,
+    input: CreateCommentRequest,
     jwt_data: JWTData = Depends(parse_jwt_user_data),
     svc: Service = Depends(get_service),
 ) -> dict[str, str]:
-    svc.repository.update_shanyrak_by_id(shanyrak_id, input.dict())
+    svc.repository.create_comment(jwt_data.user_id, shanyrak_id, input.content)
     return Response(status_code=200)

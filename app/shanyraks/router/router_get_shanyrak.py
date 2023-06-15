@@ -17,9 +17,11 @@ class GetShanyrakResponse(AppModel):
     price: int
     address: str
     area: float
-    rooms_count: int
+    room_count: int
     description: str
     user_id: Any
+    media: list[str] = []
+    comments: list[str] = []
 
 
 @router.get("/{shanyrak_id:str}", response_model=GetShanyrakResponse)
