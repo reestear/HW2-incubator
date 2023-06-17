@@ -16,6 +16,17 @@ class AuthRepository:
             "email": user["email"],
             "password": hash_password(user["password"]),
             "created_at": datetime.utcnow(),
+            "role": "user",
+        }
+
+        self.database["users"].insert_one(payload)
+
+    def create_moderator(self, moderator: dict):
+        payload = {
+            "email": moderator["email"],
+            "password": hash_password(moderator["password"]),
+            "created_at": datetime.utcnow(),
+            "role": "moderator",
         }
 
         self.database["users"].insert_one(payload)

@@ -6,7 +6,8 @@ from pydantic import BaseModel, Field
 
 
 class JWTData(BaseModel):
-    user_id: str = Field(alias="sub")
+    user_id: str = Field(alias="user_id")
+    role: str = Field(alias="role")
 
 
 class JwtService:
@@ -27,7 +28,8 @@ class JwtService:
         expires_delta = timedelta(minutes=self.expiration)
 
         jwt_data = {
-            "sub": str(user["_id"]),
+            "user_id": str(user["_id"]),
+            "role": str(user["role"]),
             "exp": datetime.utcnow() + expires_delta,
         }
 
