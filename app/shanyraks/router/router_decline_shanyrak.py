@@ -7,7 +7,7 @@ from ..service import Service, get_service
 from . import router
 
 
-@router.post("/{shanyrak_id:str}/approve")
+@router.post("/{shanyrak_id:str}/decline")
 def decline_shanyrak(
     shanyrak_id: str,
     jwt_data: JWTData = Depends(parse_jwt_user_data),
